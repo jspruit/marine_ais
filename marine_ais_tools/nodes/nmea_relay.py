@@ -5,6 +5,7 @@ import socket
 import rospy
 from nmea_msgs.msg import Sentence
 import datetime
+import os
 
 class SerialReader:
     def __init__(self, address, speed):
@@ -69,7 +70,7 @@ def nmea_listener(logdir=None):
         logdir = rospy.get_param("~log_directory")
     
     if logdir is not None and logdir != "":
-        logfile = open(logdir+'ais_'+'.'.join(datetime.datetime.utcnow().isoformat().split(':'))+'.log','w')
+        logfile = open(os.path.join(logdir, 'ais_'+'.'.join(datetime.datetime.utcnow().isoformat().split(':'))+'.log'),'w')
     else:
         logfile = None
     
