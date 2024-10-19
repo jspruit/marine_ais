@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+
 import serial
 import socket
 import rclpy
@@ -84,7 +86,7 @@ class NMEARelay(rclpy.node.Node):
         log_directory = self.get_parameter('log_directory').value
 
         if log_directory is not None and log_directory != '':
-            logfile = open(log_directory+'ais_'+'.'.join(datetime.datetime.utcnow().isoformat().split(':'))+'.log','w')
+            logfile = open(os.path.join(log_directory, 'ais_'+'.'.join(datetime.datetime.utcnow().isoformat().split(':'))+'.log'),'w')
         else:
             logfile = None
 
