@@ -15,7 +15,7 @@ class SerialReader:
 
     def readlines(self):
         nmea_in = self.serial_in.readline()
-        return (nmea_in,)
+        return [nmea_in.decode('utf-8').strip()]
 
 class UDPReader:
     def __init__(self, port):
